@@ -1,10 +1,11 @@
 import React from "react";
 import { Link , Outlet} from "react-router-dom";
+import styles from "./Navbar.module.css"
 
 const Navbar = () => {
   return (
     <>
-    <div className="navbar">
+    <div className= {styles.navbar}>
     <h1>IRCTC</h1>
     <nav>      
           <Link to="/">Home</Link>

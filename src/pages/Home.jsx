@@ -1,5 +1,7 @@
 import React from "react";
 import TrainCard from "../components/TrainCard";
+import styles from "./Home.module.css"
+
 
 const Home = () => {
   const trains = [
@@ -22,18 +24,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="homepage">
+    <div className={styles.homepage}>
+
     <h2>Book your Train</h2>
     <form>
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="from">From</label>
         <input type="text" id="from" placeholder="Enter Depature station" required/>
       </div>
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="to">To</label>
         <input type="text" id="to" placeholder="Enter Arrival station" required/>
       </div>
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label htmlFor="date">Date</label>
         <input type="text" id="date" required/>
       </div>

@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import styles from "./TrainCard.module.css"
 
 export default function TrainCard({train}) {
   return (
-    <div className='train-card'>
+    <div className= {styles.trainCard}>
       <h3> {train.name} </h3>
       <p>{train.from}</p>
       <p>{train.to}</p>
