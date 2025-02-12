@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Rajdhani Express",
+      "from": "Delhi",
+      "to": "Mumbai",
+      "departureTime": "10:00 AM",
+      "arrivalTime": "8:00 PM",
+      "fare": 1500
+    },
+    {
+      "id": 2,
+      "name": "Shatabdi Express",
+      "from": "Kolkata",
+      "to": "Bangalore",
+      "departureTime": "6:00 AM",
+      "arrivalTime": "4:00 PM",
+      "fare": 1800
+    },
+    {
+      "id": 3,
+      "name": "Express 101",
+      "from": "Chennai",
+      "to": "Hyderabad",
+      "departureTime": "10:00 AM",
+      "arrivalTime": "08:00 PM",
+      "fare": 2000
+    },
+    {
+      "id": 4,
+      "name": "Superfast 202",
+      "from": "Pune",
+      "to": "Ahmedabad",
+      "departureTime": "2:00 PM",
+      "arrivalTime": "06:00 AM",
+      "fare": 3000
+    }
+  ]
