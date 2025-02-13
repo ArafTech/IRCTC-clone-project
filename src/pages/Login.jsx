@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import useForm from '../Hooks/useForm';
+import styles from './Login.module.css'
 
 export default function Login() {
 // const [username, setUsername] = useState('');
@@ -17,20 +18,23 @@ const handleSubmit = ()=>{
 }
 
   return (
-    <div className="loginpage">
-      <h2>Login page</h2>
-      <form onsubmit={handleSubmit}>
-        <div> 
-        <label htmlFor="username">Username</label>
-        <input type="text" id="username" placeholder="Enter Username" value={formData.username} onChange={handleChange} required/>
-        </div>
-        <div>
-        <label htmlFor="password">Password</label>
-        <input type="text" id='password' placeholder='Enter password' value={formData.password} onChange={handleChange} required/>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+
+          <div className={styles.loginpage}>
+         <div className={styles.loginBox}>
+         <h2>Login Page</h2>
+       <form onSubmit={handleSubmit} className={styles.form}>
+         <div className={styles.formGroup}>
+           <label htmlFor="username">Username</label>
+           <input type="text" id='username' placeholder='Enter username' value={formData.username} onChange={handleChange} required />
+         </div>
+         <div className={styles.formGroup}>
+           <label htmlFor="password" >Password</label>
+           <input type="text" id='password' placeholder='Enter password' value={formData.password} onChange={handleChange} required />
+         </div>
+         <button type='submit'>Register</button>
+       </form>
+       </div>
+         </div>
      
-  )
+     )
 }

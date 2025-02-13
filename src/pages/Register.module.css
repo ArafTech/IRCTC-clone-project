@@ -1,0 +1,45 @@
+
+.registerpage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:90vh;
+    background-color:#f5f5f5;
+}
+.loginBox{
+    background-color: #ffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0);
+    width: 100%;
+    max-width: 450px;
+}
+.loginBox h2{
+    text-align: center;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formGroup label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .formGroup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .formGroup input:focus {
+    border-color: #003366;
+  }
