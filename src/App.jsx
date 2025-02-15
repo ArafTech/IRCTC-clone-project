@@ -31,7 +31,7 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navbar />,
+      element: <Navbar user={user} />,
       children: [
         {
           index: true,
