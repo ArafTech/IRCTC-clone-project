@@ -31,6 +31,7 @@ const Navbar = ({ user }) => {
         <h1>IRCTC</h1>
         <nav>
           {user && <Link to="/">Home</Link>}
+          {user && <Link to="/bookingDetail">Booking Details</Link>}
           {!user && <Link to="/login">Login</Link>}
           {!user && <Link to="/register">Register</Link>}
           {/* Conditionally render user dropdown */}
