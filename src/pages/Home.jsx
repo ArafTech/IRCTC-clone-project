@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import TrainCard from "../components/TrainCard";
+import BookingModal from "../components/BookingModal";
 import styles from "./Home.module.css";
-import trainData from "../trainData.json"; // Ensure this import is correct
+import trainData from "../trainData.json";
 import useForm from "../Hooks/useForm";
 
 const Home = () => {
@@ -11,22 +12,23 @@ const Home = () => {
     date: "",
   });
 
-  // Initialize trainList with the full trainData
-  const [trainList, setTrainlist] = useState(trainData);
+  const [trainList, setTrainList] = useState(trainData);
+  const [selectedTrain, setSelectedTrain] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Train data form submitted", formData);
-
-    // Filter trains based on the form data
     const filteredTrains = trainData.filter(
       (train) =>
         train.from.toLowerCase() === formData.from.toLowerCase() &&
         train.to.toLowerCase() === formData.to.toLowerCase()
     );
+    setTrainList(filteredTrains);
+  };
 
-    // Update the trainList state with the filtered trains
-    setTrainlist(filteredTrains);
+  const handleBookNow = (train) => {
+    setSelectedTrain(train);
+    setIsModalOpen(true);
   };
 
   return (
@@ -63,7 +65,6 @@ const Home = () => {
             value={formData.date}
             onChange={handleChange}
             placeholder="Enter Date"
-            
           />
         </div>
         <button type="submit">Search Trains</button>
@@ -74,10 +75,21 @@ const Home = () => {
           <h2>Available Trains</h2>
           <div className="train-list">
             {trainList.map((train) => (
-              <TrainCard key={train.id} train={train} />
+              <TrainCard
+                key={train.id}
+                train={train}
+                onBookNow={() => handleBookNow(train)} // Pass function correctly
+              />
             ))}
           </div>
         </>
+      )}
+
+      {isModalOpen && selectedTrain && (
+        <BookingModal
+          train={selectedTrain}
+          onClose={() => setIsModalOpen(false)}
+        />
       )}
     </div>
   );

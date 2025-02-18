@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import styles from './TrainCard.module.css';
 
-export default function TrainCard({ train }) {
+export default function TrainCard({ train, onBookNow }) {
   const [isBooked, setIsBooked] = useState(false);
 
   const handleBookNow = () => {
     setIsBooked(true);
-    // Add logic to handle booking
-    console.log('Booking train...');
+    onBookNow(); // Call the function passed from Home.jsx
   };
 
   return (
     <div className={styles.trainCard}>
       <h3>{train.name}</h3>
-      <p>{train.from}</p>
-      <p>{train.to}</p>
-      <p>{train.departureTime}</p>
-      <p>{train.arrivalTime}</p>
-      <p>{train.fare}</p>
+      <p>From: {train.from}</p>
+      <p>To: {train.to}</p>
+      <p>Departure: {train.departureTime}</p>
+      <p>Arrival: {train.arrivalTime}</p>
+      <p>Fare: ₹{train.fare}</p>
       <button onClick={handleBookNow} disabled={isBooked}>
         {isBooked ? 'Booked' : 'Book Now'}
       </button>

@@ -6,6 +6,7 @@ import { getAuth } from "firebase/auth";
 
 const BookingHistory = () => {
   const [bookingHistory, setBookingHistory] = useState([]);
+  const [loading, setLoading] = useState(true);  
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -13,10 +14,18 @@ const BookingHistory = () => {
     if (!user) return;
 
     const fetchBookingHistory = async () => {
-      const userDocRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(userDocRef);
-      if (docSnap.exists()) {
-        setBookingHistory(docSnap.data().bookings || []);
+      setLoading(true); 
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userDocRef);
+        
+        if (docSnap.exists()) {
+          setBookingHistory(docSnap.data().bookings || []);
+        }
+      } catch (error) {
+        console.error("Error fetching booking history:", error);
+      } finally {
+        setLoading(false);  
       }
     };
 
@@ -26,7 +35,9 @@ const BookingHistory = () => {
   return (
     <div className={styles.bookingHistory}>
       <h2>Booking History</h2>
-      {bookingHistory.length === 0 ? (
+      {loading ? (  
+        <p>Loading...</p>
+      ) : bookingHistory.length === 0 ? (
         <p>No bookings yet.</p>
       ) : (
         <ul>

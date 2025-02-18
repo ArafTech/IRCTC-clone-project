@@ -48,6 +48,7 @@ const BookingModal = ({ train, onClose }) => {
     }
   };
   
+  
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>

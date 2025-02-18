@@ -5,8 +5,8 @@ import { app } from "./config/firebase.js";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import BookingDetail from "./pages/BookingDetail.jsx";
 import Navbar from "./components/Navbar";
+import BookingHistory from './pages/BookingHistory';
 
 export default function App() {
   const auth = getAuth(app);
@@ -19,7 +19,7 @@ export default function App() {
       setLoading(false);
     });
 
-    return () => unsubscribe(); // Cleanup listener on unmount
+    return () => unsubscribe();
   }, [auth]);
 
   if (loading) {
@@ -28,10 +28,10 @@ export default function App() {
 
   return (
     <Router>
-      <Navbar user={user} /> 
+      <Navbar user={user} />
       <Routes>
         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/bookingDetail" element={user ? <BookingDetail /> : <Navigate to="/login" />} />
+        <Route path="/bookinghistory" element={user ? <BookingHistory /> : <Navigate to="/login" />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
