@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "./config/firebase.js";
+import { app } from "./config/firebase";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
-import BookingHistory from './pages/BookingHistory';
+import BookingHistory from "./pages/BookingHistory";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
   const auth = getAuth(app);
@@ -27,14 +33,22 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <Navbar user={user} />
-      <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/bookinghistory" element={user ? <BookingHistory /> : <Navigate to="/login" />} /> 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Navbar user={user} />
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/bookinghistory"
+            element={user ? <BookingHistory /> : <Navigate to="/login" />}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }

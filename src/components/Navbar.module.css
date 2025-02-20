@@ -1,46 +1,86 @@
+/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #003366;
-  padding: 10px 20px;
+  padding: 15px 30px;
   color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.navbar h1 {
-  margin: 0;
-}
-
+/* Navigation links */
 .navbar nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
-  margin: 0px 15px;
+  transition: 0.3s ease-in-out;
 }
 
 .navbar a:hover {
   text-decoration: underline;
 }
 
-.logoutButton {
+/* User greeting */
+.username {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Dark Mode Button */
+.toggleModeButton {
   background-color: transparent;
   color: white;
   border: 1px solid white;
-  padding: 8px 16px;
+  padding: 8px 14px;
   font-size: 1rem;
   cursor: pointer;
-  margin-left: 15px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggleModeButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Logout Button */
+.logoutButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
 }
 
 .logoutButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background-color: #cc0000;
+}
+
+/* Dark Mode (Applied to the entire page, but NOT the navbar) */
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+/* Dark Mode Links */
+.dark-mode a {
+  color: #ddd;
+}
+
+.dark-mode a:hover {
+  color: #bbb;
 }

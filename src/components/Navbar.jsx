@@ -1,22 +1,20 @@
-import React, { useState } from "react"; 
+import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { app } from "../config/firebase";
 import { getAuth, signOut } from "firebase/auth";
+import { useTheme } from "../context/ThemeContext";
 
 const Navbar = ({ user }) => {
-  const auth = getAuth(app); 
+  const auth = getAuth();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const { darkMode, setDarkMode } = useTheme();
 
   const handleLogout = async () => {
     try {
-      await signOut(auth); // Sign out the user
-      setMessage("Logout Successfully!");
-      navigate("/login"); // Redirect to the login page after logout
+      await signOut(auth);
+      navigate("/login");
     } catch (error) {
-      setError(error.message);
+      console.error(error.message);
     }
   };
 
@@ -30,8 +28,22 @@ const Navbar = ({ user }) => {
           {!user && <Link to="/login">Login</Link>}
           {!user && <Link to="/register">Register</Link>}
           {user && (
-            <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+            <span className={styles.username}>
+              Welcome {user.displayName || "User"}
+            </span>
           )}
+          {user && (
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+          )}
+          {/* Dark Mode Toggle Button */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={styles.toggleModeButton}
+          >
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </button>
         </nav>
       </div>
       <Outlet />
