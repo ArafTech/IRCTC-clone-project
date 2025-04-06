@@ -1,86 +1,94 @@
-/* Navbar Container */
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
 .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #003366;
-  padding: 15px 30px;
   color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  width: 100%;
+  padding: 15px 2px;
   z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Navigation links */
-.navbar nav {
+.logoContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.homeIcon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.homeIcon:hover {
+  color: #ffcc00;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navLinks {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: 0.3s ease-in-out;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-/* User greeting */
-.username {
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-/* Dark Mode Button */
-.toggleModeButton {
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  padding: 8px 14px;
-  font-size: 1rem;
+.navLink {
   cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease-in-out;
+  transition: color 0.2s ease;
 }
 
-.toggleModeButton:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.navLink:hover {
+  color: #ffcc00;
 }
 
-/* Logout Button */
-.logoutButton {
-  background-color: #ff4d4d;
+.icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.icon:hover {
+  color: #ffcc00;
+}
+
+.authButton,
+.registerButton {
+  background-color: #ff6600;
   color: white;
+  padding: 6px 14px;
   border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
-.logoutButton:hover {
-  background-color: #cc0000;
+.registerButton {
+  background-color: green;
 }
 
-/* Dark Mode (Applied to the entire page, but NOT the navbar) */
-.dark-mode {
-  background-color: #121212;
-  color: white;
+.authButton:hover {
+  background-color: darkorange;
 }
 
-/* Dark Mode Links */
-.dark-mode a {
-  color: #ddd;
-}
-
-.dark-mode a:hover {
-  color: #bbb;
+.registerButton:hover {
+  background-color: darkgreen;
 }

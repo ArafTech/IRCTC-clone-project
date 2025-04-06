@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import styles from "./Navbar.module.css";
 import { getAuth, signOut } from "firebase/auth";
-import { useTheme } from "../context/ThemeContext";
+import { FaBell, FaQuestionCircle, FaHome } from "react-icons/fa";
+import styles from "./Navbar.module.css";
 
 const Navbar = ({ user }) => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const { darkMode, setDarkMode } = useTheme();
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -20,32 +27,56 @@ const Navbar = ({ user }) => {
 
   return (
     <>
-      <div className={styles.navbar}>
-        <h1>IRCTC</h1>
-        <nav>
-          {user && <Link to="/">Home</Link>}
-          {user && <Link to="/bookinghistory">Booking History</Link>}
-          {!user && <Link to="/login">Login</Link>}
-          {!user && <Link to="/register">Register</Link>}
+      <nav className={styles.navbar}>
+        <div className={styles.logoContainer}>
+          <Link to="/">
+            <FaHome className={styles.homeIcon} title="Home" />
+          </Link>
+          <div className={styles.logo}>IRCTC</div>
+        </div>
+
+        <div className={styles.navLinks}>
           {user && (
-            <span className={styles.username}>
-              Welcome {user.displayName || "User"}
-            </span>
+            <>
+              <Link to="/" className={styles.navLink}>
+                Home
+              </Link>
+              <Link to="/bookinghistory" className={styles.navLink}>
+                Booking History
+              </Link>
+            </>
           )}
-          {user && (
-            <button onClick={handleLogout} className={styles.logoutButton}>
-              Logout
-            </button>
+          <span className={styles.navLink}>Contact Us</span>
+          <span className={styles.time}>
+            {currentTime.toLocaleDateString()} [
+            {currentTime.toLocaleTimeString()}]
+          </span>
+          <FaBell className={styles.icon} title="Notifications" />
+          <FaQuestionCircle className={styles.icon} title="Help & Support" />
+
+          {user ? (
+            <>
+              <span className={styles.username}>
+                Welcome, {user.displayName || "User"}
+              </span>
+              <button onClick={handleLogout} className={styles.authButton}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className={styles.authButton}>
+                Login
+              </Link>
+              <Link to="/register" className={styles.registerButton}>
+                Register
+              </Link>
+            </>
           )}
-          {/* Dark Mode Toggle Button */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={styles.toggleModeButton}
-          >
-            {darkMode ? "Light Mode" : "Dark Mode"}
-          </button>
-        </nav>
-      </div>
+        </div>
+      </nav>
+
+      {/* Render child routes */}
       <Outlet />
     </>
   );
