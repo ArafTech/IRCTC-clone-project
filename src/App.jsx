@@ -12,7 +12,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import BookingHistory from "./pages/BookingHistory";
-import { ThemeProvider } from "./context/ThemeContext";
+// import { ThemeProvider } from "./context/ThemeContext";
+import Footer from "./components/Footer";
 
 export default function App() {
   const auth = getAuth(app);
@@ -33,22 +34,18 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider>
-      <Router>
-        <Navbar user={user} />
-        <Routes>
-          <Route
-            path="/"
-            element={user ? <Home /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/bookinghistory"
-            element={user ? <BookingHistory /> : <Navigate to="/login" />}
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <Navbar user={user} />
+      <Routes>
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route
+          path="/bookinghistory"
+          element={user ? <BookingHistory /> : <Navigate to="/login" />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      {!user && <Footer />}
+    </Router>
   );
 }
